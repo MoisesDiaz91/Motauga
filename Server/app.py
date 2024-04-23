@@ -1,10 +1,17 @@
+import secrets
 
-from flask import Flask, request, make_response, jsonify
+# Remote library imports
+from flask import Flask, request, make_response, jsonify, session
+from flask_bcrypt import Bcrypt
 
-from config import app, db
+# Local imports
+from config import app, db, api
 from model import User, Juice, Strain, ShoppingCart, FavoriteCart
 
+#app.secret_key = # 
 
+token = secrets.token_bytes()
+print(token)
 ################################################################################
 ######################### CURL COMMANDS TO TEST ROUTES #########################
 ################################################################################
@@ -35,6 +42,10 @@ from model import User, Juice, Strain, ShoppingCart, FavoriteCart
 ################################################################################
 
 
+# USER ENCRYPTION
+bcrypt = Bcrypt(app)
+URL_PREFIX = '/api'
+
 ## ROUTES
 @app.route('/')
 def index():
@@ -43,13 +54,13 @@ def index():
 ##############################################    
 # USERS
     
-@app.get('/users') #Working Route on POSTMAN#
+@app.get('/users') #Working Route on POSTMAN# #Last Check: April 16th
 def get_all_users():
     users = User.query.all()
     users_to_dict = [ u.to_dict() for u in users ]
     return users_to_dict, 200
 
-@app.get('/users/<int:id>') #Working Route on POSTMAN#
+@app.get('/users/<int:id>') #Working Route on POSTMAN# #Last Check:  April 16th
 def get_user_by_id(id):
     found_user = User.query.filter(User.id == id).first ()
     if found_user:
@@ -57,7 +68,7 @@ def get_user_by_id(id):
     else:
         return{ "message": "Not Found"}, 404
     
-@app.patch("/users/<int:id>") #Working Route on POSTMAN#
+@app.patch("/users/<int:id>") #Working Route on POSTMAN# Last Check: April 16th
 def patch_users(id):
     data = request.get_json()
     user = User.query.filter(User.id == id).first()
@@ -72,7 +83,7 @@ def patch_users(id):
     except:
         return make_response(jsonify({"error": "could not update user"}), 405)
     
-@app.delete("/users/<int:id>") #Working Route on POSTMAN#
+@app.delete("/users/<int:id>") #Working Route on POSTMAN# Last Check: April 16th
 def delete_user(id):
     found_user = User.query.filter(User.id == id).first ()
     if found_user:
@@ -85,13 +96,13 @@ def delete_user(id):
 ############################################################
 # JUICES
     
-@app.get('/juices') #Working Route on POSTMAN#
+@app.get('/juices') #Working Route on POSTMAN# Last Check: April 16th
 def get_all_juices():
     juice = Juice.query.all()
     juice_to_dict = [ j.to_dict() for j in juice ]
     return juice_to_dict, 200
 
-@app.get('/juices/<int:id>') #Working Route on POSTMAN#
+@app.get('/juices/<int:id>') #Working Route on POSTMAN# Last Check: April 16th
 def get_juice_by_id(id):
     found_juice = Juice.query.filter(Juice.id == id).first ()
     if found_juice:
@@ -99,7 +110,7 @@ def get_juice_by_id(id):
     else:
         return{ "message": "Not Found"}, 404
 
-@app.patch("/juices/<int:id>") #Working Route on POSTMAN#
+@app.patch("/juices/<int:id>") #Working Route on POSTMAN# Last Check: April 16th
 def patch_juices(id):
     data = request.get_json()
     juice = Juice.query.filter(Juice.id == id).first()
@@ -114,7 +125,7 @@ def patch_juices(id):
     except:
         return make_response(jsonify({"error": "could not update juice"}), 405)
     
-@app.delete("/juices/<int:id>") #Working Route on POSTMAN#
+@app.delete("/juices/<int:id>") #Working Route on POSTMAN# Last Check: April 16th
 def delete_juice(id):
     found_juice = Juice.query.filter(Juice.id == id).first ()
     if found_juice:
@@ -169,7 +180,7 @@ def delete_strain(id):
 
 # SHOPPING CART
     
-@app.get('/shoppingcarts') #Working Route on POSTMAN#
+@app.get('/shoppingcarts') #Working Route on POSTMAN# 
 def get_all_shopping_carts():
     shoppingcarts = ShoppingCart.query.all()
     shoppingcarts_to_dict = [ s.to_dict() for s in shoppingcarts ]
@@ -285,5 +296,63 @@ def delete_favoritecart(id):
     else:
         return{ "message": "Not Found"}, 404
     
+##USER SIGNUP
+
+@app.post(URL_PREFIX + '/users') #Working Route on POSTMAN#
+def create_user():
+    try:
+        data = request.json
+        password_hash =bcrypt.generate_password_hash(data["password"]).decode('utf-8')
+        create_user = User(
+            first_name = data.get("first_name"),
+            last_name = data.get("last_name"),
+            city = data.get("city"),
+            state = data.get("state"),
+            username=data['username'],
+            phone_number=data['phone_number'],
+            password=password_hash)
+        db.session.add(create_user)
+        db.session.commit()
+        session["user_id"] = create_user.id
+        return create_user.to_dict(), 201
+    except Exception as e:
+        print(f'This Error Occured: {e}')
+        return { 'error': str(e) }, 406
+
+##############################################
+
+# LOGIN, LOGOUT, CHECK-SESSION#
+    
+@app.get(URL_PREFIX + '/check_session') #Working Route on POSTMAN#
+def check_session():
+    user_id = session.get("user_id")
+    user = User.query.filter(User.id == user_id).first()
+    if user:
+        return user.to_dict(), 200
+    else:
+        return { "message": "No logged in user" }, 401
+
+
+
+
+
+@app.post(URL_PREFIX + '/login') #Working Route on POSTMAN#
+def login():
+    data = request.json
+    user = User.query.filter(User.username==data["username"]).first()
+    if user and bcrypt.check_password_hash(user.password, data["password"]):
+        session["user_id"] = user.id
+        return user.to_dict(), 201
+    else:
+        return{"message": "Invalid Username or password"}, 401
+
+# deletes cookie upon logout
+@app.delete(URL_PREFIX + "/logout") #Working Route on POSTMAN#
+def logout():
+    session.pop('user_id')
+    return {}, 204
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
+
+

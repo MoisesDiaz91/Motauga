@@ -17,7 +17,6 @@ class User(db.Model, SerializerMixin):
     state = db.Column(db.String,nullable = False)
     username = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
     phone_number = db.Column(db.String, nullable=False)
     admin = db.Column(db.Boolean, nullable=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
@@ -41,8 +40,8 @@ class User(db.Model, SerializerMixin):
     
     serialize_rules = ("-owned_juice","-owned_strain" ,"-shopping_cart", "-favorite_cart",)
     
-    @validates('name')
-    def validate_name(self, key, val):
+    @validates('first_name')
+    def validate_first_name(self, key, val):
         if 2 <= len(val) <= 35 and val.capitalize():
             return val
         else:
@@ -154,7 +153,7 @@ class ShoppingCart (db.Model, SerializerMixin):
     strain_obj = db.relationship("Strain", back_populates="shopping_cart")
 
     # Rules#
-    serialize_rules = ("-user_obj", "-juice_obj.shopping_cart", "-strain_obj.shopping_cart",)
+    serialize_rules = ("-user_obj.shopping_cart", "-juice_obj", "-strain_obj",)
 
 
 ###### FAVORITE PRODUCT ######

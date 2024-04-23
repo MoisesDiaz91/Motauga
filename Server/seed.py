@@ -70,7 +70,9 @@ if __name__ == "__main__":
 
         User.query.delete()
         Juice.query.delete()
-
+        ShoppingCart.query.delete()
+        Strain.query.delete()
+        FavoriteCart.query.delete()
 
 ##############################################################################################################################
                     ## FAKE USER DATA FOR APP.db  ##USER MODEL RECIEVE FAKE DATA     
@@ -86,7 +88,6 @@ if __name__ == "__main__":
                      state=choice(state_list).capitalize(), 
                      username=fake.company(), 
                      password=password_hash,
-                     email=fake.email(),
                      phone_number = fake.phone_number())  
                     
                     
@@ -142,16 +143,17 @@ if __name__ == "__main__":
 ##############################################################################################################################
         shopping_cart_list = []
 
-        for _ in range(0, 5):
-             s = ShoppingCart(
+        for _ in range(0, 10):
+           s = ShoppingCart(
                      user_id=choice(users_list).id,
                      juice_id=choice(juice_list).id,
                      strain_id=choice(strain_list).id)
 
-             shopping_cart_list.append(s)
+           shopping_cart_list.append(s)
 
         db.session.add_all(shopping_cart_list)
         db.session.commit()
+
 
 #######################################################################################################################
         
