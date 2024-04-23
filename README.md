@@ -19,15 +19,13 @@ Welcome to Motauga, a full-stack cannabis e-commerce site designed for staying u
 
 ## Project Overview
 
-Motauga is a demonstration of technical proficiency in building a full-stack application for an e-commerce platform focused on cannabis collboration. The focus on the webiste is to showcase key features and technologies. Those features being a Store Locator, displaying product(juice collaborations & strains), and user engagement ( authentication & authorization).
+Motauga is a demonstration of technical proficiency in building a full-stack application for an e-commerce platform focused on cannabis collaboration. The focus on the webiste is to showcase key features and technologies. Those features being a Store Locator, displaying product(juice collaborations & strains), and user engagement ( authentication & authorization).
 
 ## Technologies Used
 
 - **Front End:**
   - React (JavaScript)
   - React Hook Forms
-  - Image Dropzone
-  - Cloudinary Cloud Services
 
 - **Back End:**
   - Flask (Python)
