@@ -1,38 +1,86 @@
-import React from "react";
-import AddCartButton from './AddCartButton';
-import FavoriteButton from './FavoriteButton'
+// import React, { useState, useEffect } from 'react';
+// import AddCartButton from './AddCartButton';
+// import FavoriteButton from './FavoriteButton'
 
-const removeJuice = () => {
-    console.log("hello")
-}
 
-function Juice({juice}){
-    return(
-        <div className="juice-card">
-            <br></br>
-            <div className="product">
-                    <img src={juice.image} alt={juice.name} width="200px" border="2"/> <br></br>
-                    <button onClick={() => console.log(juice.name + " is my favorite juice!")} className="favorite-button" variant="primary">❤️️</button>
+// function Juice({ juice }) {
 
-                    <button onClick={() => console.log("add")} className="add-button" variant="primary">Add Item</button>
-                    <button onClick={() => removeJuice()} className="delete-button" variant="primary">Delete from cart</button>
-            
-                <div className="description">
-                    <li>
-                      <p><b>Collab With:</b><i><u>{juice.collab}</u></i></p>
-                      <p><b>Juice Name:</b>{juice.name}</p>
-                      <p><b>Flavor:</b> {juice.flavor}</p>
-                      <p><b>Price:</b> {juice.price}</p>
-                    </li>
-                </div>   
+// // console.group(juice)
 
+
+// const { id, name, collab, flavor, price, image } = juice
+//     // const juiceItems = juice.map((data) => {
+//     //     const { id, name, collab, flavor, price, image } = data
+
+
+//         // return (
+//         //     <div key={id} className="product">
+//         //         <img src={image} alt={name} width="200px" border="2" /> <br></br>
+//         //         <div id={id} className="description">
+//         //             <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
+//         //             <p><b>Juice Name:</b> {name}</p>
+//         //             <p><b>Flavor:</b> {flavor}</p>
+//         //             <p><b>Price:</b> {price}</p>
+//         //         </div>
+//         //         <button className="addToCartBttn" variant="primary">Add Item</button>
+//         //         <button className="removeFromCartBttn" variant="primary">Delete Item</button>
+//         //     </div>
+
+//         // )
+//     // })
+
+//     return (<>
+//             <div  className="product">
+//             <img src={image} alt={name} width="200px" border="2" /> <br></br>
+//             <div  id={id} className="description">
+//                 <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
+//                 <p><b>Juice Name:</b> {name}</p>
+//                 <p><b>Flavor:</b> {flavor}</p>
+//                 <p><b>Price:</b> {price}</p>
+//             </div>
+//             <button className="addToCartBttn" variant="primary">Add Item</button>
+//             <button className="removeFromCartBttn" variant="primary">Delete Item</button>
+
+//         </div>
+//     </>)
+// }
+
+// export default Juice
+
+/*
+
+        <div className="product">
+            <img src={image} alt={name} width="200px" border="2" /> <br></br>
+            <div className="description">
+                <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
+                <p><b>Juice Name:</b> {name}</p>
+                <p><b>Flavor:</b> {flavor}</p>
+                <p><b>Price:</b> {price}</p>
             </div>
-  
+            <button className="addToCartBttn" variant="primary">Add Item</button>
+            <button className="removeFromCartBttn" variant="primary">Delete Item</button>
+
         </div>
 
-        
-    )
-}
+*/
 
-export default Juice
 
+    // const juiceItems = juiceData.map((data) => {
+    //     const { id, name, collab, flavor, price, image } = data
+
+
+    //     return (
+    //         <div key={id} className="product">
+    //             <img src={image} alt={name} width="200px" border="2" /> <br></br>
+    //             <div id={id} className="description">
+    //                 <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
+    //                 <p><b>Juice Name:</b> {name}</p>
+    //                 <p><b>Flavor:</b> {flavor}</p>
+    //                 <p><b>Price:</b> {price}</p>
+    //             </div>
+    //             <button className="addToCartBttn" variant="primary">Add Item</button>
+    //             <button className="removeFromCartBttn" variant="primary">Delete Item</button>
+    //         </div>
+
+    //     )
+    // })

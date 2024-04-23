@@ -1,27 +1,100 @@
 /* Header.css */
 
+/*HEADER COMPONONET*/
 .header-container {
-  background-color: #9df1ed;
+  background-image: url("https://motaguanyc.com/cdn/shop/files/Blue_World_Water_Day_Banner_Landscape.png?v=1694655130&width=1100");
+  width: 1229px;
+  height: 531px;
   color: #000000;
   padding: 10px 7%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-size: cover;
+
 }
-.logo-container {
-  display: flex;
-  align-items: center;
+
+.split{
+  width: 50%;
+  height: 100% ;
+}
+
+.split.zero{
+  position: absolute;
+  left: 0;
+  background-color: aqua;
+}
+.split.one{
+  position: absolute;
+  right: 0;
+  background-color: pink;
+}
+
+.split.two{
+  position: absolute;
+  left: 0;
+  background-color: orange;
+}
+.split.three{
+  position: absolute;
+  right: 0;
+  background-color: #000000;
+}
+/*HOMEPAGE COMPONONET*/
+
+/*
+.home {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+*/
+
+.bakedbodega{
+
 }
 
 /* NavBar.css */
 
 .navigation-bar {
+  position: sticky;
+  top: 0;
+  width: 93%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, #cbf4ef, #3bf6f2);
-  padding: 10px;
+  background: #1b2430;
+  padding: 20px 80px;
   box-shadow: 0 2px 5px rgba(244, 246, 247, 0.3);
+
+}
+
+.navigation-bar h2{
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.navigation-bar h2{
+  color: #fffafa;
+}
+
+
+.navigation-bar h6 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.navigation-bar h6{
+  color: #fffafa;
+}
+
+.navigation-bar h6:hover{
+  color: #0ceaf2;
 }
 
 .navigation-button {
@@ -34,117 +107,134 @@
 }
 
 .navigation-button:hover {
-  background-color: #f18050;
+
+  color: white;
+  cursor: pointer;
 }
 
-h1 {
+
+
+
+
+
+/*PRODUCT TEXT DISPLAY*/
+.shopTitle {
+  margin-top: 100px;
   text-align: center;
-  color: #0d0d0d;
-  font-size: 2rem;
+  font-size: 40px;
 }
 
-
-
-/* Juice.css */
-.juice-card {
+/*PRODUCTS are JUICE, STRAINS, and STORES*/
+.products {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  place-items: center;
-  justify-content:space-between;
-}
-
-.product {
-  border-radius: 15px;
-  width: 300px;
-  height: 350;
-  margin: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .product img {
   width: 300px;
 }
 
-.product .description {
-  text-align: center;
-}
-
-.product:hover{
-  transition: 0.3s, ease-in;
+.product:hover {
+  transition: 0.3s ease-in;
   cursor: pointer;
 }
 
 
 
-/* StrainPage.css */
-.strain-card {
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  place-items: center;
-  justify-content:space-between;
-}
 
-.product {
+/*BUTTON STYLING (ADD & REMOVE)*/
+.addToCartBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 15px;
-  width: 300px;
-  height: 350;
-  margin: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.product img {
-  width: 300px;
-}
-
-.product .description {
-  text-align: center;
-}
-
-.product:hover{
-  transition: 0.3s, ease-in;
-  cursor: pointer;
-}
-
-/* StorePage.css */
-.store-card {
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 10fr 1fr 2fr;
-  place-items: center;
-  justify-content:space-between;
-}
-
-.stores {
+.removeFromCartBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 15px;
-  width: 300px;
-  height: 350;
-  margin: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.stores img {
-  width: 300px;
+
+
+/* LOGIN IN PAGE (FORM)*/
+
+.user-form{
+  max-width: 400px;
+  margin: 50px auto; /* Increased margin to lower the form on the page */
+  padding: 20px;
+  background-color: #f9f9f9; /* Lighter background color for a clean look */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.stores .description{
-  text-align: center;
+.user-form input{
+  width: 94%;
+  padding: 12px; /* Increased padding for a more comfortable input experience */
+  margin-bottom: 20px; /* Increased margin for better separation */
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.stores:hover{
-  transition: 0.3s, ease-in;
+.user-form button{
+  width: 100%;
+  padding: 12px; /* Increased padding for better button size */
+  background-color: #e74c3c; /* Red color for the button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.user-form button:hover{
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+.instring-button{
+  color: #e74c3c; /* Red color for the link */
+  text-decoration: none;
+  display: inline-block; /* Ensures proper spacing between text and link */
+  margin-top: 10px; /* Adds space above the link */
+}
+
+.instring-button:hover{
+  text-decoration: underline;
+}
+
+.instring-button-container{
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Add space above the link */
+}
+
+/*SIGNUP PAGE FORM */
+
+.signup-page-container {
+  max-width: 400px;
+  margin: 50px auto; /* Increased margin to lower the form on the page */
+  padding: 20px;
+  background-color: #f9f9f9; /* Lighter background color for a clean look */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);}
+
+.signup-page-container input{
+  width: 94%;
+  padding: 12px; /* Increased padding for a more comfortable input experience */
+  margin-bottom: 20px; /* Increased margin for better separation */
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }

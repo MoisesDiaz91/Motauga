@@ -1,27 +1,24 @@
-import { NavLink } from "react-router-dom"
-import Strain from "../Components/Strain"
-import SearchBar from "../Components/SearchBar"
 
-function StrainPage({strains, updateSearchText}){
-    
-    const strainCardComponents = strains.map(strain=>{
+import Strain from "../Components/Strain"
+
+
+function StrainPage({ strains}) {
+
+console.log(strains)
+
+    const strainCardComponents = strains.map(strain => {
+       
         return <Strain key={strain.id} strain={strain} />
     })
 
-    return(
+    return (
         <div className='strain-page'>
-            <div className='navigation-bar'>
-                <NavLink to="/">Home 🏠</NavLink><br></br>
-                <NavLink to="/juicepage">Beverages 🍹</NavLink><br></br>
-                <NavLink to="/storepage">Stores 🏪</NavLink>
-                <NavLink to="/ShoppingCart" >Shopping Cart 🛒</NavLink>
-                <SearchBar updateSearchText={updateSearchText} />
+            <div className="shopTitle">
+                <h1>The Collection</h1>
             </div>
 
-            <div className="shopStrains">
-                 <ol>
-                    {strainCardComponents}
-                </ol>
+            <div className="products">
+                {strainCardComponents}
             </div>
 
         </div>

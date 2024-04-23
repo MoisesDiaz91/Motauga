@@ -1,8 +1,7 @@
-import { NavLink } from "react-router-dom"
 import Store from "../Components/Store"
-import SearchBar from "../Components/SearchBar"
 
-function StorePage({stores, updateSearchText}){
+
+function StorePage({stores}){
 
     const storeCardComponents = stores.map(store =>{
         return <Store key={store.id} store={store}/>
@@ -10,17 +9,13 @@ function StorePage({stores, updateSearchText}){
 
     return(
         <div className='store-page'>
-            <div className='navigation-bar'>
-                <NavLink to="/">Home 🏠</NavLink><br></br>
-                <NavLink to="/juicepage">Beverages 🍹</NavLink><br></br>
-                <NavLink to="/strainpage">Strains 🌲</NavLink>
-                <SearchBar updateSearchText={updateSearchText} />
+            <div className="shopTitle">
+                <h1>The Motauga Familia</h1>
+                <h4>Juice Providers</h4>
             </div>
 
-             <div className="store-list">
-                <ol>
+             <div className="products">
                    {storeCardComponents}
-               </ol>
              </div>
             
         </div>

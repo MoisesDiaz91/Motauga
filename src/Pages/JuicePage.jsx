@@ -1,30 +1,47 @@
-import Juice from '../Components/Juice';
-import { NavLink } from "react-router-dom"
-import SearchBar from '../Components/SearchBar';
+import React from 'react';
+import AddCartButton from '../Components/AddCartButton';
+import FavoriteButton from '../Components/FavoriteButton';
+import { useOutletContext } from 'react-router-dom';
 
 
-function JuicePage({juices, updateSearchText}){
+function JuicePage({ juicesData, updateCart }) {
+
+console.log(juicesData) //returning array of objects
+   
+const {currentUser} = useOutletContext()
     
-    const juiceCardComponents = juices.map(juice =>{
-        return <Juice key={juice.id} juice={juice} />
-      })
-      
-      return(
-        <div className='juice-page'>
-            <div className='navigation-bar'>
-                <NavLink to="/">Home 🏠</NavLink><br></br>
-                <NavLink to="/strainpage">Strains 🌲</NavLink><br></br>
-                <NavLink to="/storepage">Stores 🏪</NavLink>
-                <NavLink to="/ShoppingCart">Shopping Cart 🛒</NavLink>
-                <SearchBar updateSearchText={updateSearchText} />
+    const juiceItems = juicesData.map((juice) => {
+        //  console.log("Hit This", juice)// Mapping the objects within the array
+
+        const { id, name, collab, flavor, price, image } = juice
+
+        console.log(id, name,collab,flavor, price,image, )
+        return (
+            <div key={id} className="product">
+                <img src={image} alt={name} width="200px"  border="2" /> <br></br>
+                <div id={id} className="description">
+                    <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
+                    <p><b>Juice Name:</b> {name}</p>
+                    <p><b>Flavor:</b> {flavor}</p>
+                    <p><b>Price:</b> {price}</p>
+                </div>
+                {currentUser ? <AddCartButton juiceID={id} updateCart={updateCart}/> : null}
+                {currentUser ? <FavoriteButton juiceID={id}/>: null}
+                
             </div>
-            
+
+        )  
+    })
+
+    return (
+        <div className='juice-page'>
+            <div className="shopTitle">
+                <h1>Brand Collaboration</h1>
+            </div>
 
             <div className="products">
-                <ol>
-                    {juiceCardComponents}
-                </ol>
-            </div> 
+                {juiceItems}
+            </div>
 
         </div>
     )
