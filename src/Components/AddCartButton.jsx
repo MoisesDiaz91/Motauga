@@ -8,7 +8,7 @@ function AddCartButton({ juiceID, updateCart }) {
 
     const { currentUser } = useOutletContext()
 
-    console.log(juiceID);
+    // console.log(juiceID);
     // console.log(currentUser.id)
     useEffect(() => {
         if (currentUser && currentUser.id) {
@@ -24,7 +24,7 @@ function AddCartButton({ juiceID, updateCart }) {
                                     return data
                                 }
                             })
-                            console.log(userCart) // Displaying an empty array(During the Morning) || Displaying an array with data from shopping cart(During the Afternoon)
+                            // console.log(userCart) // Displaying an empty array(During the Morning) || Displaying an array with data from shopping cart(During the Afternoon)
                             setCurrentCart(userCart)
                         })
                     }
@@ -35,7 +35,7 @@ function AddCartButton({ juiceID, updateCart }) {
         }
     }, [currentUser])
 
-    console.log(currentCart)
+    // console.log(currentCart)
     // console.log(juiceID)
 
     useEffect(() => {
@@ -54,45 +54,55 @@ function AddCartButton({ juiceID, updateCart }) {
 
     }, [currentCart, juiceID]);
 
-    console.log(inCart)
+    // console.log(inCart)
+    // console.log(currentUser.id)
 
     function addToCart(event) {
+        console.log(event.target)
+        console.log(event.target.parentNode)
         const juiceIDClicked = event.target.parentNode.id
-        console.log("Hit This", juiceIDClicked) //Not Console logging
+        const strainIDClicked = event.target.parentNode.id
+        // console.log("Juice ID", juiceIDClicked) //Not Console logging // Now it is
         
-        fetch(`/shoppingcarts`, {
+        fetch(`/shoppingcarts`,{
             method: "POST",
-            headers: {
+            headers:{
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                // set to currentUser.id when working
                 user_id: currentUser.id,
-                juice_id: juiceIDClicked
+                juice_id: juiceIDClicked,
+                strain_id: strainIDClicked
             })
         })
-            .then(resp => {
-                if (resp.ok) {
-                    setInCart(true);
-                    if (updateCart) {
-                        updateCart()
-                    }
+        .then(res =>{
+            if(res.ok){
+                setInCart(true);
+                if(updateCart){
+                    updateCart()
                 }
-            })
-            .catch(error => {
-                console.log(`${error}`)
-            });
+            }
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     }
 
     console.log(currentCart)
     function removeFromCart(event) {
         const juiceIDClicked = event.target.parentNode.id;
+        
+        console.log(juiceIDClicked)
+        console.log(currentCart)
+        
         const cartInstance = currentCart.find(item => item.id === parseInt(juiceIDClicked));
-
         console.log(cartInstance)
+        console.log(cartInstance.id)
+        // console.log(juiceIDClicked)
+        
 
-        fetch(`/shoppingcarts/${cartInstance}`, {
+        fetch(`/shoppingcarts/${cartInstance.id}`, {
             method: "DELETE",
         })
             .then(resp => {

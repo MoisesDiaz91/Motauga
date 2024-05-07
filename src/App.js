@@ -102,7 +102,7 @@ function App() {
         {
           path: "/strainpage",
           element: <>
-            <StrainPage strains={strainFilter} setStrains={setStrains} updateSearchText={updateSearchText} />
+            <StrainPage strainsData={strainFilter} setStrains={setStrains} updateSearchText={updateSearchText} />
           </>,
           errorElement: <ErrorPage />
         },

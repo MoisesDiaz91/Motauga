@@ -41,13 +41,3 @@ function LoginPage() {
 
 export default LoginPage
 
-/*
-
-        <div className='navigation-bar'>
-            <Link to="/">Home 🏠</Link>
-            <Link to="/juicepage">Beverages 🍹</Link>
-            <Link to="/strainpage">Strains 🌲</Link>
-            <Link to="/storepage">Stores 🏪</Link>
-        </div>
-
-*/

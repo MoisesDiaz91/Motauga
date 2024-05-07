@@ -15,11 +15,11 @@ const {currentUser} = useOutletContext()
 
         const { id, name, collab, flavor, price, image } = juice
 
-        console.log(id, name,collab,flavor, price,image, )
+        console.log(id, name, collab, flavor, price, image )
         return (
-            <div key={id} className="product">
+            <div key={id} id={id}className="product">
                 <img src={image} alt={name} width="200px"  border="2" /> <br></br>
-                <div id={id} className="description">
+                <div className="description">
                     <p><b>Collab With:</b> <i><u>{collab}</u></i></p>
                     <p><b>Juice Name:</b> {name}</p>
                     <p><b>Flavor:</b> {flavor}</p>

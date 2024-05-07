@@ -103,12 +103,14 @@ if __name__ == "__main__":
 #############################################################################################################################
         juice_list = []
 
-        for _ in range(0, 5):
+        for _ in range(-1, 10):
             password_hash=bcrypt.generate_password_hash("123").decode('utf-8')
             
             j = Juice(collab=fake.name(), 
                      name=fake.name(), 
-                     flavor=fake.name(),)  
+                     flavor=fake.name(),
+                     price=randint(20000, 175000),
+                     user_obj = choice(users_list))  
                     
                     
             juice_list.append(j)
@@ -129,7 +131,9 @@ if __name__ == "__main__":
             s = Strain(type=fake.name(), 
                      aroma=fake.name(), 
                      taste=fake.name(),
-                     thc_level=fake.name())  
+                     thc_level=fake.name(),
+                     price=randint(20000, 175000),
+                     user_obj = choice(users_list))  
                     
                     
             strain_list.append(s)

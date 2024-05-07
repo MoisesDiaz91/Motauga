@@ -22,7 +22,7 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    password_hash = db.Column(db.String)
+    password_hash = db.Column(db.String,)
     
     ## REALTIONSHIP ##
     
@@ -30,7 +30,7 @@ class User(db.Model, SerializerMixin):
     owned_juice = db.relationship("Juice", back_populates="user_obj", cascade="all, delete-orphan")
 
     #User to Strain#
-    owned_strain = db.relationship("Strain", back_populates="user_obj", cascade="all,delete-orphan")
+    owned_strain = db.relationship("Strain", back_populates="user_obj", cascade="all, delete-orphan")
 
     # User to Shopping Cart#
     shopping_cart = db.relationship("ShoppingCart", back_populates="user_obj", cascade="all, delete-orphan")
@@ -38,7 +38,7 @@ class User(db.Model, SerializerMixin):
     #User to Favorite Cart#
     favorite_cart = db.relationship("FavoriteCart", back_populates="user_obj", cascade="all, delete-orphan")
     
-    serialize_rules = ("-owned_juice","-owned_strain" ,"-shopping_cart", "-favorite_cart",)
+    serialize_rules = ("-owned_juice", "-owned_strain", "-shopping_cart", "-favorite_cart",)
     
     @validates('first_name')
     def validate_first_name(self, key, val):
@@ -66,6 +66,7 @@ class Juice(db.Model, SerializerMixin):
     collab = db.Column(db.String, nullable = False)
     name = db.Column(db.String, nullable = False)
     flavor = db.Column(db.String, nullable=False)
+    price = db.Column(db.Integer, nullable = False)
     
     ## FOREIGN KEY ##
     owner_id = db.Column(db.Integer, db.ForeignKey("users_table.id"))
@@ -85,7 +86,7 @@ class Juice(db.Model, SerializerMixin):
     favorite_cart = db.relationship("FavoriteCart", back_populates="juice_obj", cascade="all, delete-orphan")
     
    # Rules #
-    serialize_rules = ("-user_obj.owned_juice", "-shopping_cart.juice_obj", "-favorite_cart.juice_obj",)
+    serialize_rules = ("-user_obj", "-shopping_cart.juice_obj", "-favorite_cart",)
     
     # association_proxy#
 
@@ -100,6 +101,8 @@ class Strain(db.Model, SerializerMixin):
     aroma = db.Column(db.String, nullable = False)
     taste  = db.Column(db.String, nullable = False)
     thc_level = db.Column(db.String, nullable = False)
+    price = db.Column(db.Integer, nullable = False)
+    name = db.Column(db.String, nullable=True)
 
     ## FOREIGN KEY ##
     owner_id = db.Column(db.Integer, db.ForeignKey("users_table.id"))
@@ -119,7 +122,7 @@ class Strain(db.Model, SerializerMixin):
     favorite_cart = db.relationship("FavoriteCart", back_populates="strain_obj", cascade="all, delete-orphan")
 
     # Rules #
-    serialize_rules = ("-user_obj.owned_strain", "-shopping_cart.strain_obj", "-favorite_cart.strain_obj",)
+    serialize_rules = ("-user_obj", "-shopping_cart.strain_obj", "-favorite_cart",)
    
   
 
@@ -153,7 +156,7 @@ class ShoppingCart (db.Model, SerializerMixin):
     strain_obj = db.relationship("Strain", back_populates="shopping_cart")
 
     # Rules#
-    serialize_rules = ("-user_obj.shopping_cart", "-juice_obj", "-strain_obj",)
+    serialize_rules = ("-user_obj", "-juice_obj.shopping_cart", "-strain_obj.shopping_cart",)
 
 
 ###### FAVORITE PRODUCT ######
@@ -182,6 +185,6 @@ class FavoriteCart(db.Model, SerializerMixin):
     strain_obj = db.relationship("Strain", back_populates="favorite_cart")
 
     # Rules #
-    serialize_rules = ("-user_obj", "-juice_obj.favorite_cart", "-strain_obj.favorite_cart")
+    serialize_rules = ("-user_obj", "-juice_obj.favorite_cart", "-strain_obj.favorite_cart",)
  
 

@@ -200,8 +200,8 @@ def create_shoppingcart():
     try:
         new_shoppingcart = ShoppingCart(
             user_id = data.get("user_id"),
-            juice_id = data.get("juice_id")
-            
+            juice_id = data.get("juice_id"),
+            strain_id = data.get("strain_id") 
         )
         db.session.add(new_shoppingcart)
         db.session.commit()
