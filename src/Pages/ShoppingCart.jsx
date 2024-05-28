@@ -24,7 +24,7 @@ function ShoppingCart() {
                 .then(res => {
                     if (res.ok) {
                         res.json().then(returnData => {
-                            console.log("DATA:", returnData) //This is returning data in shopping cart table in app.db
+                            console.log("Shopping Cart DATA:", returnData) //This is returning data in shopping cart table in app.db
                             const userCart = returnData.filter((data) => {
                                 if (data.user_id === currentUser.id) {
                                     return data
@@ -38,7 +38,7 @@ function ShoppingCart() {
                 })
         }
     }
-    console.log("Hit This", currentCart) // Holding value of user id currently.
+    console.log("Current State Value", currentCart) // Holding value of user id currently.
 
     useEffect(() => {
         updateCart()

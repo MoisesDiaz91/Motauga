@@ -260,7 +260,8 @@ def create_favoritecart():
     try:
         new_favoritecart = FavoriteCart(
             user_id = data.get("user_id"),
-            juice_id = data.get("juice_id")
+            juice_id = data.get("juice_id"),
+            strain_id = data.get("strain_id")
             
         )
         db.session.add(new_favoritecart)

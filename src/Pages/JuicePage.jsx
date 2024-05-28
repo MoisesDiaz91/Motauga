@@ -4,7 +4,7 @@ import FavoriteButton from '../Components/FavoriteButton';
 import { useOutletContext } from 'react-router-dom';
 
 
-function JuicePage({ juicesData, updateCart }) {
+function JuicePage({ juicesData, updateCart, updateFavorites }) {
 
 console.log(juicesData) //returning array of objects
    
@@ -26,7 +26,7 @@ const {currentUser} = useOutletContext()
                     <p><b>Price:</b> {price}</p>
                 </div>
                 {currentUser ? <AddCartButton juiceID={id} updateCart={updateCart}/> : null}
-                {currentUser ? <FavoriteButton juiceID={id}/>: null}
+                {currentUser ? <FavoriteButton juiceID={id} updateFavorites={updateFavorites}/>: null}
                 
             </div>
 

@@ -13,6 +13,8 @@ import LoginPage from './Pages/LogInPage';
 import SignUpPage from './Pages/SignUpPage';
 import Home from './Components/Home';
 import UserProfile from './Pages/UserProfile';
+import UserFavorites from './Pages/UserFavorites';
+import StoreLocator from './Pages/StoreLocator';
 
 
 
@@ -141,6 +143,20 @@ function App() {
           </>,
           errorElement: <ErrorPage />
         },
+        {
+          path: "/favorites",
+          element: <>
+            <UserFavorites   />
+          </>,
+          errorElement: <ErrorPage />
+        },
+        {
+          path: "/StoreLocator",
+          element: <>
+            <StoreLocator stores={storeFilter} />
+          </>,
+          errorElement: <ErrorPage />
+        }
       ]
     }
   ]

@@ -21,10 +21,11 @@ function NavBar({ currentUser, logout , updateSearchText}) {
             <div className='navigation-bar' >
                 <Link to="/" className="navigation-button"><h6>Home 🏠</h6></Link>
                 <Link to="/juicepage" className="navigation-button"><h6>Beverages 🍹</h6></Link>
-                <h2><b>💧Motauga💧</b></h2>
                 <Link to="/strainpage" className="navigation-button"><h6>Strains 🌲</h6></Link>
                 <Link to="/storepage" className="navigation-button"><h6>Stores 🏪</h6></Link>
+                <Link to="/StoreLocator" className="navigation-button"><h6>Store Locator</h6></Link>
                 <Link to="/shoppingcart" className="navigation-button"><h6>ShoppingCart</h6></Link>
+                <Link to="/favorites"><h6>Favorties</h6></Link>
                 <Link to="/profile/:profileID" className="navigation-button"><h6>Profile</h6></Link>
                 <SearchBar updateSearchText={updateSearchText} />
                 <button onClick={logout} className="navigation-button">Logout</button>

@@ -67,6 +67,7 @@ class Juice(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable = False)
     flavor = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable = False)
+    image = db.Column(db.String, nullable=False)
     
     ## FOREIGN KEY ##
     owner_id = db.Column(db.Integer, db.ForeignKey("users_table.id"))
@@ -97,12 +98,13 @@ class Strain(db.Model, SerializerMixin):
     __tablename__= "strain_table"
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable = False)
     aroma = db.Column(db.String, nullable = False)
     taste  = db.Column(db.String, nullable = False)
     thc_level = db.Column(db.String, nullable = False)
-    price = db.Column(db.Integer, nullable = False)
-    name = db.Column(db.String, nullable=True)
+    image = db.Column(db.String, nullable=False)
+    
 
     ## FOREIGN KEY ##
     owner_id = db.Column(db.Integer, db.ForeignKey("users_table.id"))

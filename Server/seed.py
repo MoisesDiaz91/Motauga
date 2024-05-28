@@ -73,6 +73,7 @@ if __name__ == "__main__":
         ShoppingCart.query.delete()
         Strain.query.delete()
         FavoriteCart.query.delete()
+        
 
 ##############################################################################################################################
                     ## FAKE USER DATA FOR APP.db  ##USER MODEL RECIEVE FAKE DATA     
@@ -98,18 +99,31 @@ if __name__ == "__main__":
         #######################################################################################################################
 
 
+        juiceimage_list= [
+            "https://i.imgur.com/VoMZdd8.jpg",
+            "https://i.imgur.com/L1dS7Kf.jpg",
+            "https://i.imgur.com/Z9FfnaA.jpg",
+            "https://i.imgur.com/SSPNHdt.jpg",
+            "https://i.imgur.com/Ik5unC0.jpg",
+            "https://i.imgur.com/UB9ZLHb.jpg",
+            "https://i.imgur.com/A7I1vvT.jpg",
+            "https://i.imgur.com/dcv5ZM5.jpg",
+            "https://i.imgur.com/yKpieCF.jpg",
+            "https://i.imgur.com/yKpieCF.jpg"
+        ]
 ##############################################################################################################################
                     ## FAKE JUICE DATA FOR APP.db  ##JUICE DATABASE RECIEVE FAKE DATA     
 #############################################################################################################################
         juice_list = []
 
-        for _ in range(-1, 10):
+        for _ in range(0, 10):
             password_hash=bcrypt.generate_password_hash("123").decode('utf-8')
             
             j = Juice(collab=fake.name(), 
                      name=fake.name(), 
                      flavor=fake.name(),
                      price=randint(20000, 175000),
+                     image=choice(juiceimage_list),
                      user_obj = choice(users_list))  
                     
                     
@@ -120,19 +134,41 @@ if __name__ == "__main__":
 
 #######################################################################################################################
         
+        strainimage_list= [
+            "https://images.leafly.com/flower-images/defaults/generic/strain-36.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-40.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-19.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-31.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-29.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-32.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://leafly-public.imgix.net/strains/photos/X6WMoxxxTSFF7t7tOqgO_MAC.jpg?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-35.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/purple/strain-10.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/runtz-nug-image.jpg?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/dark-green/strain-4.png?auto=compress%2Cformat&w=350&dpr=2" ,
+            "https://images.leafly.com/flower-images/defaults/generic/strain-8.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://blackunicornhub.com/cdn/shop/products/platinum_both_sides_w__54673_1024x1024@2x.png?v=1675867403",
+            "https://leafly-public.imgix.net/strains/photos/MPWPStPKT0mQMfMPq3fX_Slurricane.jpg?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-19.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/purple/strain-17.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/purple/strain-18.png?auto=compress%2Cformat&w=350&dpr=2",
+            "https://images.leafly.com/flower-images/defaults/generic/strain-39.png?auto=compress%2Cformat&w=350&dpr=2"
+        ]
+
 ##############################################################################################################################
                     ## FAKE STRAIN DATA FOR APP.db  ##STRAIN DATABASE RECIEVE FAKE DATA     
 ##############################################################################################################################    
         strain_list = []
 
-        for _ in range(0, 5):
+        for _ in range(0, 18):
             password_hash=bcrypt.generate_password_hash("123").decode('utf-8')
             
-            s = Strain(type=fake.name(), 
+            s = Strain(name=fake.name(),
+                     type=fake.name(), 
                      aroma=fake.name(), 
                      taste=fake.name(),
                      thc_level=fake.name(),
-                     price=randint(20000, 175000),
+                     image=choice(strainimage_list),
                      user_obj = choice(users_list))  
                     
                     

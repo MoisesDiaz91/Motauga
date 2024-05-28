@@ -16,6 +16,7 @@ const {currentUser} = useOutletContext()
 
         const {id, image, name, type, aroma, taste, thc_level } = strain
 
+        console.log(id, image, name, type, aroma, taste, thc_level )
         return (
             <div key={id} id={id}className="product">
                 <img src={image} alt={name} width="250px" border="2" />
@@ -26,7 +27,7 @@ const {currentUser} = useOutletContext()
                     <p><b>Strain Taste:</b> {taste}</p>
                     <p><b>Strain THC Level:</b> {thc_level}</p>
                 </div>
-                {currentUser ? <AddCartButton juiceID={id} updateCart={updateCart}/> : null}
+                {currentUser ? <AddCartButton strainID={id} updateCart={updateCart}/> : null}
                 <button className="removeFromCartBttn" variant="primary">Delete Item</button>
             </div>
         )
